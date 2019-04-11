@@ -16,8 +16,8 @@
 	class PrintOneToHundred{
 
 		//Declared two variable to print two different word
-		var $String1 ;
-		var $String2;
+		private  $String1 ;
+		private  $String2;
         
         //Member function of the class to print 1to100
         function printNumbers(){
@@ -34,7 +34,7 @@
             }
         }
 
-		//Calling the member function
+		//Constructor
 		function __construct(  string $Str1="Reformed",   string $Str2="Tech" ) {
             $this->String1 = $Str1;
             $this->String2 = $Str2;
