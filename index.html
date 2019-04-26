@@ -1,0 +1,70 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  
+  <title>News Headlines</title>
+  
+  
+</head>
+<body>
+  <h1>Top Ten News Headlines</h1>
+
+  <ol id="articles"> </ol>
+  
+  <script>
+
+    function createNode(element) {
+      return document.createElement(element);
+	}
+
+
+	function append(parent, el) {
+		return parent.appendChild(el);
+	}
+
+
+	const ol = document.getElementById('articles');
+	const url = 'https://newsapi.org/v2/top-headlines?country=us&apiKey=2c7e3f560e3f422a87f0bb1a7a866fa7&fbclid=IwAR0idjkufs0dYfo5dZLW2p0topTBNwHtQJ49ji01n8V8u3AsiUdhMp3qSjg';
+
+
+	fetch(url)
+	.then((resp) => resp.json())
+	.then(function(data) {
+		//console.log(data.articles);
+		var counter = 0;
+		let articles = data.articles;
+
+		return articles.map(function(news) {		// Looping throw API result
+
+			if(counter<10){							// Check condition to prevent take more than 10 headlines
+			
+			let li = createNode('li'),
+			  title = createNode('span'),
+			  channel = createNode('h4');
+			  
+			  title.innerHTML = news.title;
+			  channel.innerHTML = news.source.name;
+			  
+			  append(li, channel);
+			  append(li, title);
+			  append(ol, li);
+
+			  counter = counter +1;					// Increment the counter
+			}
+
+		})
+	})
+
+	exception
+	.catch(function(error) {
+	console.log(JSON.stringify(error));
+	});   
+
+  	</script>
+
+</body>
+
+</html>
+		
